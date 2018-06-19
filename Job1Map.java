@@ -10,7 +10,8 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 
 public class Job1Map extends Mapper<Object, Text, Text, Text> {
-	
+	// This is the mapper of Preliminary job
+		
 	private static String k1,k2 = new String();
 	private Boolean g;
 	private Text key1 = new Text();
@@ -26,18 +27,18 @@ public class Job1Map extends Mapper<Object, Text, Text, Text> {
 		if(itr.countTokens()==2){
 			k1 = itr.nextToken();
 			k2 = itr.nextToken();
-			// Controls if this row is a comment (is used char #) and if there is no cycle
+			// The mapper controls if this row is a comment (is used char #) and if there is no cycle
 			// that is both the pages have the same ID
 			if(k1.indexOf('#')==-1 && k2.indexOf('#')==-1 && !(k1.equals(k2))){
 				key1.set(k1);
 				key2.set(k2);
 				value1.set(k2);
-				value2.set("$");
+				value2.set("$"+k1);
 				context.write(key1,value1);
 				context.write(key2,value2);
 			}
 		}
 	}
-	// If all the conditions are satisfied the Mapper's output will be "<pageFrom>  <pageTo>" "<pageTo>  $" 
-	
+	// If all the conditions are satisfied, give an input line "<pageFrom> <pageTo>" the Mapper's output 
+	//will be "<pageFrom>  <pageTo>" and  "<pageTo>  $<pageFrom>" 
 }

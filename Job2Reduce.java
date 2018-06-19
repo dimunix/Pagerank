@@ -10,6 +10,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 
 public class Job2Reduce extends Reducer<Text, Text, Text, Text>{
 
+	// This is the reducer of Iterative job
         private Text list = new Text();
         private static String c;
         private static double conv_factor, damp_factor, npages;

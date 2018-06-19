@@ -9,7 +9,8 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
 public class Job2Map extends Mapper<Text, Text, Text, Text> {
-	
+	// This is the mapper of Iterative job
+		
         private static String k, temp, list = new String();
         private Text key1 = new Text();
         private Text value1 = new Text();
